@@ -1,0 +1,441 @@
+syntax = "proto3";
+
+package psp_pos_api;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+message DeleteApiAppointmentIdRequest {
+    int32 id = 1;
+}
+
+message DeleteApiCustomersIdRequest {
+    int32 id = 1;
+}
+
+message DeleteApiInventoryIdRequest {
+    int32 id = 1;
+}
+
+message DeleteApiOrderItemsOrderIdProductIdRequest {
+    int32 orderId = 1;
+    int32 productId = 2;
+}
+
+message DeleteApiOrdersIdRequest {
+    int32 id = 1;
+}
+
+message DeleteApiProductsIdRequest {
+    int32 id = 1;
+}
+
+message DeleteApiStaffUsersIdRequest {
+    int32 id = 1;
+}
+
+message DeleteApiSuppliersIdRequest {
+    int32 id = 1;
+}
+
+message DeleteApiTransactionsIdRequest {
+    int32 id = 1;
+}
+
+message GetApiAppointmentIdRequest {
+    int32 id = 1;
+}
+
+message GetApiAppointmentRequest {
+    int32 page = 1;
+    int32 pageSize = 2;
+}
+
+message GetApiCustomersIdRequest {
+    int32 id = 1;
+}
+
+message GetApiCustomersRequest {
+    int32 page = 1;
+    int32 pageSize = 2;
+}
+
+message GetApiInventoryIdRequest {
+    int32 id = 1;
+}
+
+message GetApiInventoryRequest {
+    int32 page = 1;
+    int32 pageSize = 2;
+}
+
+message GetApiOrderItemsOrderIdProductIdRequest {
+    int32 orderId = 1;
+    int32 productId = 2;
+}
+
+message GetApiOrderItemsRequest {
+    int32 page = 1;
+    int32 pageSize = 2;
+}
+
+message GetApiOrdersIdRequest {
+    bool fullInfo = 1;
+    int32 id = 2;
+}
+
+message GetApiOrdersRequest {
+    bool fullInfo = 1;
+    int32 page = 2;
+    int32 pageSize = 3;
+}
+
+message GetApiProductsIdRequest {
+    int32 id = 1;
+}
+
+message GetApiProductsRequest {
+    int32 page = 1;
+    int32 pageSize = 2;
+}
+
+message GetApiStaffUsersIdRequest {
+    int32 id = 1;
+}
+
+message GetApiStaffUsersRequest {
+    int32 page = 1;
+    int32 pageSize = 2;
+}
+
+message GetApiSuppliersIdRequest {
+    int32 id = 1;
+}
+
+message GetApiSuppliersRequest {
+    int32 page = 1;
+    int32 pageSize = 2;
+}
+
+message GetApiTransactionsIdRequest {
+    int32 id = 1;
+}
+
+message GetApiTransactionsRequest {
+    int32 page = 1;
+    int32 pageSize = 2;
+}
+
+message PostApiOrdersRequest {
+    bool fullInfo = 1;
+}
+
+message PutApiAppointmentIdRequest {
+    int32 id = 1;
+}
+
+message PutApiCustomersIdRequest {
+    int32 id = 1;
+}
+
+message PutApiInventoryIdRequest {
+    int32 id = 1;
+}
+
+message PutApiOrderItemsOrderIdProductIdRequest {
+    string orderId = 1;
+    string productId = 2;
+}
+
+message PutApiOrdersIdRequest {
+    bool fullInfo = 1;
+    int32 id = 2;
+}
+
+message PutApiProductsIdRequest {
+    int32 id = 1;
+}
+
+message PutApiStaffUsersIdRequest {
+    int32 id = 1;
+}
+
+message PutApiSuppliersIdRequest {
+    int32 id = 1;
+}
+
+message PutApiTransactionsIdRequest {
+    int32 id = 1;
+}
+
+service PspPosApiService {
+    rpc DeleteApiAppointmentId(DeleteApiAppointmentIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/Appointment/{id}"
+        };
+    }
+
+    rpc DeleteApiCustomersId(DeleteApiCustomersIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/Customers/{id}"
+        };
+    }
+
+    rpc DeleteApiInventoryId(DeleteApiInventoryIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/Inventory/{id}"
+        };
+    }
+
+    rpc DeleteApiOrderItemsOrderIdProductId(DeleteApiOrderItemsOrderIdProductIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/OrderItems/{orderId}/{productId}"
+        };
+    }
+
+    rpc DeleteApiOrdersId(DeleteApiOrdersIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/Orders/{id}"
+        };
+    }
+
+    rpc DeleteApiProductsId(DeleteApiProductsIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/Products/{id}"
+        };
+    }
+
+    rpc DeleteApiStaffUsersId(DeleteApiStaffUsersIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/StaffUsers/{id}"
+        };
+    }
+
+    rpc DeleteApiSuppliersId(DeleteApiSuppliersIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/Suppliers/{id}"
+        };
+    }
+
+    rpc DeleteApiTransactionsId(DeleteApiTransactionsIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/Transactions/{id}"
+        };
+    }
+
+    rpc GetApiAppointment(GetApiAppointmentRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/Appointment"
+        };
+    }
+
+    rpc GetApiAppointmentId(GetApiAppointmentIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/Appointment/{id}"
+        };
+    }
+
+    rpc GetApiCustomers(GetApiCustomersRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/Customers"
+        };
+    }
+
+    rpc GetApiCustomersId(GetApiCustomersIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/Customers/{id}"
+        };
+    }
+
+    rpc GetApiInventory(GetApiInventoryRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/Inventory"
+        };
+    }
+
+    rpc GetApiInventoryId(GetApiInventoryIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/Inventory/{id}"
+        };
+    }
+
+    rpc GetApiOrderItems(GetApiOrderItemsRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/OrderItems"
+        };
+    }
+
+    rpc GetApiOrderItemsOrderIdProductId(GetApiOrderItemsOrderIdProductIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/OrderItems/{orderId}/{productId}"
+        };
+    }
+
+    rpc GetApiOrders(GetApiOrdersRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/Orders"
+        };
+    }
+
+    rpc GetApiOrdersId(GetApiOrdersIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/Orders/{id}"
+        };
+    }
+
+    rpc GetApiProducts(GetApiProductsRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/Products"
+        };
+    }
+
+    rpc GetApiProductsId(GetApiProductsIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/Products/{id}"
+        };
+    }
+
+    rpc GetApiStaffUsers(GetApiStaffUsersRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/StaffUsers"
+        };
+    }
+
+    rpc GetApiStaffUsersId(GetApiStaffUsersIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/StaffUsers/{id}"
+        };
+    }
+
+    rpc GetApiSuppliers(GetApiSuppliersRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/Suppliers"
+        };
+    }
+
+    rpc GetApiSuppliersId(GetApiSuppliersIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/Suppliers/{id}"
+        };
+    }
+
+    rpc GetApiTransactions(GetApiTransactionsRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/Transactions"
+        };
+    }
+
+    rpc GetApiTransactionsId(GetApiTransactionsIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/Transactions/{id}"
+        };
+    }
+
+    rpc PostApiAppointment(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/Appointment"
+        };
+    }
+
+    rpc PostApiCustomers(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/Customers"
+        };
+    }
+
+    rpc PostApiInventory(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/Inventory"
+        };
+    }
+
+    rpc PostApiOrderItems(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/OrderItems"
+        };
+    }
+
+    rpc PostApiOrders(PostApiOrdersRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/Orders"
+        };
+    }
+
+    rpc PostApiProducts(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/Products"
+        };
+    }
+
+    rpc PostApiStaffUsers(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/StaffUsers"
+        };
+    }
+
+    rpc PostApiSuppliers(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/Suppliers"
+        };
+    }
+
+    rpc PostApiTransactions(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/Transactions"
+        };
+    }
+
+    rpc PutApiAppointmentId(PutApiAppointmentIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            put: "/api/Appointment/{id}"
+        };
+    }
+
+    rpc PutApiCustomersId(PutApiCustomersIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            put: "/api/Customers/{id}"
+        };
+    }
+
+    rpc PutApiInventoryId(PutApiInventoryIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            put: "/api/Inventory/{id}"
+        };
+    }
+
+    rpc PutApiOrderItemsOrderIdProductId(PutApiOrderItemsOrderIdProductIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            put: "/api/OrderItems/{orderId}/{productId}"
+        };
+    }
+
+    rpc PutApiOrdersId(PutApiOrdersIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            put: "/api/Orders/{id}"
+        };
+    }
+
+    rpc PutApiProductsId(PutApiProductsIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            put: "/api/Products/{id}"
+        };
+    }
+
+    rpc PutApiStaffUsersId(PutApiStaffUsersIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            put: "/api/StaffUsers/{id}"
+        };
+    }
+
+    rpc PutApiSuppliersId(PutApiSuppliersIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            put: "/api/Suppliers/{id}"
+        };
+    }
+
+    rpc PutApiTransactionsId(PutApiTransactionsIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            put: "/api/Transactions/{id}"
+        };
+    }
+}
