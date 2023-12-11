@@ -2,7 +2,7 @@
 
 ## Tooling
 
-Build tool: Maven
+Build tool: Maven (run with `gradle bootRUn`)
 
 This project is developed with VS Code with these extensions:
 - [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
