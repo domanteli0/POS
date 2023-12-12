@@ -7,6 +7,7 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
+    id "com.google.protobuf" version "0.9.4"
     id 'org.springframework.boot' version '3.2.0'
 }
 
@@ -20,10 +21,29 @@ repositories {
 }
 
 dependencies {
-    api libs.org.springframework.boot.spring.boot.starter
+
+    // protobuf
     api libs.com.google.protobuf.protobuf.java
     api libs.com.googlecode.protobuf.java.format.protobuf.java.format
+    implementation 'com.google.protobuf:protoc:3.25.1'
+    // implementation 'com.google.protobuf:protobuf-gradle-plugin:0.9.2'
+    // implementation 'com.google.protobuf:protobuf-java:3.22.2'
+
+    // spring
+    api libs.org.springframework.boot.spring.boot.starter
+    implementation 'org.springframework:spring-web:6.1.1'
+
+    // tests
     testImplementation libs.org.springframework.boot.spring.boot.starter.test
+}
+
+protobuf {
+    // Configure the protoc executable
+    protoc {
+        // Download from repositories
+        // TODO: dix this 👇
+        artifact = 'com.google.protobuf:protoc:3.25.1'
+    }
 }
 
 group = 'com.spaghettininjas'

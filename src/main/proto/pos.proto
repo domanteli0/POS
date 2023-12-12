@@ -1,10 +1,55 @@
 syntax = "proto3";
 
-package proto;
-option java_package = "com.spaghettininjas.pos.proto";
+package psp_pos_api;
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
+
+message Appointment {
+    int32 customerId = 1;
+    string dateTime = 2;
+    int32 id = 3;
+    int32 staffUserId = 4;
+    string status = 5;
+}
+
+message AppointmentIEnumerablePaginatableResponseObject {
+    repeated Appointment data = 1;
+    string nextPage = 2;
+}
+
+message Cheque {
+    Appointment appointment = 1;
+    int32 id = 2;
+    repeated OrderItemsWithPrices itemsWithPrices = 3;
+    int32 orderId = 4;
+    string paymentType = 5;
+    int32 price = 6;
+    int32 priceWithTax = 7;
+    int32 priceWithTaxAndDiscount = 8;
+    int32 tax = 9;
+    int64 time = 10;
+    int32 totalDiscount = 11;
+}
+
+message ChequeIEnumerablePaginatableResponseObject {
+    repeated Cheque data = 1;
+    string nextPage = 2;
+}
+
+message Customer {
+    string email = 1;
+    repeated string feedBack = 2;
+    int32 id = 3;
+    string loyaltyLevel = 4;
+    int32 loyaltyPoints = 5;
+    string name = 6;
+}
+
+message CustomerIEnumerablePaginatableResponseObject {
+    repeated Customer data = 1;
+    string nextPage = 2;
+}
 
 message DeleteApiAppointmentIdRequest {
     int32 id = 1;
@@ -127,46 +172,169 @@ message GetApiTransactionsRequest {
     int32 pageSize = 2;
 }
 
+message Inventory {
+    int32 id = 1;
+    int32 productId = 2;
+    int32 stockQuantity = 3;
+    int32 supplierId = 4;
+}
+
+message InventoryIEnumerablePaginatableResponseObject {
+    repeated Inventory data = 1;
+    string nextPage = 2;
+}
+
+message OrderItems {
+    int32 orderId = 1;
+    int32 productId = 2;
+    int32 quantity = 3;
+}
+
+message OrderItemsIEnumerablePaginatableResponseObject {
+    repeated OrderItems data = 1;
+    string nextPage = 2;
+}
+
+message OrderItemsWithPrices {
+    int32 name = 1;
+    int32 price = 2;
+    int32 quantity = 3;
+}
+
+message PostApiAppointmentRequest {
+    Appointment body = 1;
+}
+
+message PostApiCustomersRequest {
+    Customer body = 1;
+}
+
+message PostApiInventoryRequest {
+    Inventory body = 1;
+}
+
+message PostApiOrderItemsRequest {
+    OrderItems body = 1;
+}
+
 message PostApiOrdersRequest {
-    bool fullInfo = 1;
+    Cheque body = 1;
+    bool fullInfo = 2;
+}
+
+message PostApiProductsRequest {
+    Product body = 1;
+}
+
+message PostApiStaffUsersRequest {
+    StaffUser body = 1;
+}
+
+message PostApiSuppliersRequest {
+    Supplier body = 1;
+}
+
+message PostApiTransactionsRequest {
+    Transaction body = 1;
+}
+
+message Product {
+    string category = 1;
+    int32 id = 2;
+    string name = 3;
+    int32 price = 4;
+}
+
+message ProductIEnumerablePaginatableResponseObject {
+    repeated Product data = 1;
+    string nextPage = 2;
 }
 
 message PutApiAppointmentIdRequest {
-    int32 id = 1;
-}
-
-message PutApiCustomersIdRequest {
-    int32 id = 1;
-}
-
-message PutApiInventoryIdRequest {
-    int32 id = 1;
-}
-
-message PutApiOrderItemsOrderIdProductIdRequest {
-    string orderId = 1;
-    string productId = 2;
-}
-
-message PutApiOrdersIdRequest {
-    bool fullInfo = 1;
+    Appointment body = 1;
     int32 id = 2;
 }
 
+message PutApiCustomersIdRequest {
+    Customer body = 1;
+    int32 id = 2;
+}
+
+message PutApiInventoryIdRequest {
+    Inventory body = 1;
+    int32 id = 2;
+}
+
+message PutApiOrderItemsOrderIdProductIdRequest {
+    OrderItems body = 1;
+    string orderId = 2;
+    string productId = 3;
+}
+
+message PutApiOrdersIdRequest {
+    Cheque body = 1;
+    bool fullInfo = 2;
+    int32 id = 3;
+}
+
 message PutApiProductsIdRequest {
-    int32 id = 1;
+    Product body = 1;
+    int32 id = 2;
 }
 
 message PutApiStaffUsersIdRequest {
-    int32 id = 1;
+    StaffUser body = 1;
+    int32 id = 2;
 }
 
 message PutApiSuppliersIdRequest {
-    int32 id = 1;
+    Supplier body = 1;
+    int32 id = 2;
 }
 
 message PutApiTransactionsIdRequest {
-    int32 id = 1;
+    Transaction body = 1;
+    int32 id = 2;
+}
+
+message StaffUser {
+    string email = 1;
+    int32 id = 2;
+    string name = 3;
+    string password = 4;
+    string role = 5;
+}
+
+message StaffUserIEnumerablePaginatableResponseObject {
+    repeated StaffUser data = 1;
+    string nextPage = 2;
+}
+
+message Supplier {
+    string contacts = 1;
+    int32 id = 2;
+    string name = 3;
+}
+
+message SupplierIEnumerablePaginatableResponseObject {
+    repeated Supplier data = 1;
+    string nextPage = 2;
+}
+
+message Transaction {
+    int32 discountApplied = 1;
+    int32 id = 2;
+    int32 orderId = 3;
+    string paymentType = 4;
+    int32 staffUserId = 5;
+    int32 tax = 6;
+    int32 tip = 7;
+    int32 totalDiscount = 8;
+}
+
+message TransactionIEnumerablePaginatableResponseObject {
+    repeated Transaction data = 1;
+    string nextPage = 2;
 }
 
 service PspPosApiService {
@@ -224,219 +392,237 @@ service PspPosApiService {
         };
     }
 
-    rpc GetApiAppointment(GetApiAppointmentRequest) returns (google.protobuf.Empty) {
+    rpc GetApiAppointment(GetApiAppointmentRequest) returns (AppointmentIEnumerablePaginatableResponseObject) {
         option (google.api.http) = {
             get: "/api/Appointment"
         };
     }
 
-    rpc GetApiAppointmentId(GetApiAppointmentIdRequest) returns (google.protobuf.Empty) {
+    rpc GetApiAppointmentId(GetApiAppointmentIdRequest) returns (Appointment) {
         option (google.api.http) = {
             get: "/api/Appointment/{id}"
         };
     }
 
-    rpc GetApiCustomers(GetApiCustomersRequest) returns (google.protobuf.Empty) {
+    rpc GetApiCustomers(GetApiCustomersRequest) returns (CustomerIEnumerablePaginatableResponseObject) {
         option (google.api.http) = {
             get: "/api/Customers"
         };
     }
 
-    rpc GetApiCustomersId(GetApiCustomersIdRequest) returns (google.protobuf.Empty) {
+    rpc GetApiCustomersId(GetApiCustomersIdRequest) returns (Customer) {
         option (google.api.http) = {
             get: "/api/Customers/{id}"
         };
     }
 
-    rpc GetApiInventory(GetApiInventoryRequest) returns (google.protobuf.Empty) {
+    rpc GetApiInventory(GetApiInventoryRequest) returns (InventoryIEnumerablePaginatableResponseObject) {
         option (google.api.http) = {
             get: "/api/Inventory"
         };
     }
 
-    rpc GetApiInventoryId(GetApiInventoryIdRequest) returns (google.protobuf.Empty) {
+    rpc GetApiInventoryId(GetApiInventoryIdRequest) returns (Inventory) {
         option (google.api.http) = {
             get: "/api/Inventory/{id}"
         };
     }
 
-    rpc GetApiOrderItems(GetApiOrderItemsRequest) returns (google.protobuf.Empty) {
+    rpc GetApiOrderItems(GetApiOrderItemsRequest) returns (OrderItemsIEnumerablePaginatableResponseObject) {
         option (google.api.http) = {
             get: "/api/OrderItems"
         };
     }
 
-    rpc GetApiOrderItemsOrderIdProductId(GetApiOrderItemsOrderIdProductIdRequest) returns (google.protobuf.Empty) {
+    rpc GetApiOrderItemsOrderIdProductId(GetApiOrderItemsOrderIdProductIdRequest) returns (OrderItems) {
         option (google.api.http) = {
             get: "/api/OrderItems/{orderId}/{productId}"
         };
     }
 
-    rpc GetApiOrders(GetApiOrdersRequest) returns (google.protobuf.Empty) {
+    rpc GetApiOrders(GetApiOrdersRequest) returns (ChequeIEnumerablePaginatableResponseObject) {
         option (google.api.http) = {
             get: "/api/Orders"
         };
     }
 
-    rpc GetApiOrdersId(GetApiOrdersIdRequest) returns (google.protobuf.Empty) {
+    rpc GetApiOrdersId(GetApiOrdersIdRequest) returns (Cheque) {
         option (google.api.http) = {
             get: "/api/Orders/{id}"
         };
     }
 
-    rpc GetApiProducts(GetApiProductsRequest) returns (google.protobuf.Empty) {
+    rpc GetApiProducts(GetApiProductsRequest) returns (ProductIEnumerablePaginatableResponseObject) {
         option (google.api.http) = {
             get: "/api/Products"
         };
     }
 
-    rpc GetApiProductsId(GetApiProductsIdRequest) returns (google.protobuf.Empty) {
+    rpc GetApiProductsId(GetApiProductsIdRequest) returns (Product) {
         option (google.api.http) = {
             get: "/api/Products/{id}"
         };
     }
 
-    rpc GetApiStaffUsers(GetApiStaffUsersRequest) returns (google.protobuf.Empty) {
+    rpc GetApiStaffUsers(GetApiStaffUsersRequest) returns (StaffUserIEnumerablePaginatableResponseObject) {
         option (google.api.http) = {
             get: "/api/StaffUsers"
         };
     }
 
-    rpc GetApiStaffUsersId(GetApiStaffUsersIdRequest) returns (google.protobuf.Empty) {
+    rpc GetApiStaffUsersId(GetApiStaffUsersIdRequest) returns (StaffUser) {
         option (google.api.http) = {
             get: "/api/StaffUsers/{id}"
         };
     }
 
-    rpc GetApiSuppliers(GetApiSuppliersRequest) returns (google.protobuf.Empty) {
+    rpc GetApiSuppliers(GetApiSuppliersRequest) returns (SupplierIEnumerablePaginatableResponseObject) {
         option (google.api.http) = {
             get: "/api/Suppliers"
         };
     }
 
-    rpc GetApiSuppliersId(GetApiSuppliersIdRequest) returns (google.protobuf.Empty) {
+    rpc GetApiSuppliersId(GetApiSuppliersIdRequest) returns (Supplier) {
         option (google.api.http) = {
             get: "/api/Suppliers/{id}"
         };
     }
 
-    rpc GetApiTransactions(GetApiTransactionsRequest) returns (google.protobuf.Empty) {
+    rpc GetApiTransactions(GetApiTransactionsRequest) returns (TransactionIEnumerablePaginatableResponseObject) {
         option (google.api.http) = {
             get: "/api/Transactions"
         };
     }
 
-    rpc GetApiTransactionsId(GetApiTransactionsIdRequest) returns (google.protobuf.Empty) {
+    rpc GetApiTransactionsId(GetApiTransactionsIdRequest) returns (Transaction) {
         option (google.api.http) = {
             get: "/api/Transactions/{id}"
         };
     }
 
-    rpc PostApiAppointment(google.protobuf.Empty) returns (google.protobuf.Empty) {
+    rpc PostApiAppointment(PostApiAppointmentRequest) returns (Appointment) {
         option (google.api.http) = {
             post: "/api/Appointment"
+            body: "body"
         };
     }
 
-    rpc PostApiCustomers(google.protobuf.Empty) returns (google.protobuf.Empty) {
+    rpc PostApiCustomers(PostApiCustomersRequest) returns (Customer) {
         option (google.api.http) = {
             post: "/api/Customers"
+            body: "body"
         };
     }
 
-    rpc PostApiInventory(google.protobuf.Empty) returns (google.protobuf.Empty) {
+    rpc PostApiInventory(PostApiInventoryRequest) returns (Inventory) {
         option (google.api.http) = {
             post: "/api/Inventory"
+            body: "body"
         };
     }
 
-    rpc PostApiOrderItems(google.protobuf.Empty) returns (google.protobuf.Empty) {
+    rpc PostApiOrderItems(PostApiOrderItemsRequest) returns (OrderItems) {
         option (google.api.http) = {
             post: "/api/OrderItems"
+            body: "body"
         };
     }
 
-    rpc PostApiOrders(PostApiOrdersRequest) returns (google.protobuf.Empty) {
+    rpc PostApiOrders(PostApiOrdersRequest) returns (Cheque) {
         option (google.api.http) = {
             post: "/api/Orders"
+            body: "body"
         };
     }
 
-    rpc PostApiProducts(google.protobuf.Empty) returns (google.protobuf.Empty) {
+    rpc PostApiProducts(PostApiProductsRequest) returns (Product) {
         option (google.api.http) = {
             post: "/api/Products"
+            body: "body"
         };
     }
 
-    rpc PostApiStaffUsers(google.protobuf.Empty) returns (google.protobuf.Empty) {
+    rpc PostApiStaffUsers(PostApiStaffUsersRequest) returns (StaffUser) {
         option (google.api.http) = {
             post: "/api/StaffUsers"
+            body: "body"
         };
     }
 
-    rpc PostApiSuppliers(google.protobuf.Empty) returns (google.protobuf.Empty) {
+    rpc PostApiSuppliers(PostApiSuppliersRequest) returns (Supplier) {
         option (google.api.http) = {
             post: "/api/Suppliers"
+            body: "body"
         };
     }
 
-    rpc PostApiTransactions(google.protobuf.Empty) returns (google.protobuf.Empty) {
+    rpc PostApiTransactions(PostApiTransactionsRequest) returns (Transaction) {
         option (google.api.http) = {
             post: "/api/Transactions"
+            body: "body"
         };
     }
 
-    rpc PutApiAppointmentId(PutApiAppointmentIdRequest) returns (google.protobuf.Empty) {
+    rpc PutApiAppointmentId(PutApiAppointmentIdRequest) returns (Appointment) {
         option (google.api.http) = {
             put: "/api/Appointment/{id}"
+            body: "body"
         };
     }
 
-    rpc PutApiCustomersId(PutApiCustomersIdRequest) returns (google.protobuf.Empty) {
+    rpc PutApiCustomersId(PutApiCustomersIdRequest) returns (Customer) {
         option (google.api.http) = {
             put: "/api/Customers/{id}"
+            body: "body"
         };
     }
 
-    rpc PutApiInventoryId(PutApiInventoryIdRequest) returns (google.protobuf.Empty) {
+    rpc PutApiInventoryId(PutApiInventoryIdRequest) returns (Inventory) {
         option (google.api.http) = {
             put: "/api/Inventory/{id}"
+            body: "body"
         };
     }
 
-    rpc PutApiOrderItemsOrderIdProductId(PutApiOrderItemsOrderIdProductIdRequest) returns (google.protobuf.Empty) {
+    rpc PutApiOrderItemsOrderIdProductId(PutApiOrderItemsOrderIdProductIdRequest) returns (OrderItems) {
         option (google.api.http) = {
             put: "/api/OrderItems/{orderId}/{productId}"
+            body: "body"
         };
     }
 
-    rpc PutApiOrdersId(PutApiOrdersIdRequest) returns (google.protobuf.Empty) {
+    rpc PutApiOrdersId(PutApiOrdersIdRequest) returns (Cheque) {
         option (google.api.http) = {
             put: "/api/Orders/{id}"
+            body: "body"
         };
     }
 
-    rpc PutApiProductsId(PutApiProductsIdRequest) returns (google.protobuf.Empty) {
+    rpc PutApiProductsId(PutApiProductsIdRequest) returns (Product) {
         option (google.api.http) = {
             put: "/api/Products/{id}"
+            body: "body"
         };
     }
 
-    rpc PutApiStaffUsersId(PutApiStaffUsersIdRequest) returns (google.protobuf.Empty) {
+    rpc PutApiStaffUsersId(PutApiStaffUsersIdRequest) returns (StaffUser) {
         option (google.api.http) = {
             put: "/api/StaffUsers/{id}"
+            body: "body"
         };
     }
 
-    rpc PutApiSuppliersId(PutApiSuppliersIdRequest) returns (google.protobuf.Empty) {
+    rpc PutApiSuppliersId(PutApiSuppliersIdRequest) returns (Supplier) {
         option (google.api.http) = {
             put: "/api/Suppliers/{id}"
+            body: "body"
         };
     }
 
-    rpc PutApiTransactionsId(PutApiTransactionsIdRequest) returns (google.protobuf.Empty) {
+    rpc PutApiTransactionsId(PutApiTransactionsIdRequest) returns (Transaction) {
         option (google.api.http) = {
             put: "/api/Transactions/{id}"
+            body: "body"
         };
     }
 }
