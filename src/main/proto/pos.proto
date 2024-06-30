@@ -1,6 +1,10 @@
 syntax = "proto3";
 
-package psp_pos_api;
+package psp_api;
+
+option java_package = "com.spaghettininjas.pos";
+option java_outer_classname = "Pos";
+
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
@@ -623,6 +627,15 @@ service PspPosApiService {
         option (google.api.http) = {
             put: "/api/Transactions/{id}"
             body: "body"
+        };
+    }
+}
+
+// This one is added manually
+service CustomerController {
+    rpc GetApiCustomers(GetApiCustomersRequest) returns (CustomerIEnumerablePaginatableResponseObject) {
+        option (google.api.http) = {
+            get: "/api/Customers"
         };
     }
 }

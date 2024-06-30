@@ -32,6 +32,10 @@ dependencies {
     // spring
     api libs.org.springframework.boot.spring.boot.starter
     implementation 'org.springframework:spring-web:6.1.1'
+    implementation 'org.springframework:spring-webmvc:6.1.1'
+    implementation 'org.springframework.boot:spring-boot-starter:3.2.0'
+
+    implementation 'org.projectlombok:lombok:1.18.30'
 
     // tests
     testImplementation libs.org.springframework.boot.spring.boot.starter.test
@@ -41,7 +45,6 @@ protobuf {
     // Configure the protoc executable
     protoc {
         // Download from repositories
-        // TODO: dix this 👇
         artifact = 'com.google.protobuf:protoc:3.25.1'
     }
 }
